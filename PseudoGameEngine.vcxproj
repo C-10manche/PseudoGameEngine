@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Include;$(SolutionDir)dependencies/GLFW/include;$(SolutionDir)dependencies/GLAD/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dev\PseudoGameEngine\src;$(SolutionDir)dependencies/GLFW/include;$(SolutionDir)dependencies/GLAD/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -130,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Include;$(SolutionDir)dependencies/GLFW/include;$(SolutionDir)dependencies/GLAD/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dev\PseudoGameEngine\src;$(SolutionDir)dependencies/GLFW/include;$(SolutionDir)dependencies/GLAD/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -143,29 +143,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Src\CharacterController.cpp" />
-    <ClCompile Include="Src\Transform.cpp" />
-    <ClCompile Include="Src\Shader.cpp" />
-    <ClCompile Include="Src\Component.cpp" />
-    <ClCompile Include="Src\GameObject.cpp" />
+    <ClCompile Include="src\core\Camera.cpp" />
+    <ClCompile Include="src\core\CharacterController.cpp" />
+    <ClCompile Include="src\core\Transform.cpp" />
+    <ClCompile Include="src\render\Shader.cpp" />
+    <ClCompile Include="src\core\Component.cpp" />
+    <ClCompile Include="src\core\GameObject.cpp" />
     <ClCompile Include="glad.c" />
-    <ClCompile Include="Src\MyMath.cpp" />
-    <ClCompile Include="Src\main.cpp" />
-    <ClCompile Include="Src\Scene.cpp" />
-    <ClCompile Include="Src\TestScene.cpp" />
+    <ClCompile Include="src\utils\MyMath.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\core\Scene.cpp" />
+    <ClCompile Include="src\test\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\charactercontroller.h" />
-    <ClInclude Include="Include\component.h" />
-    <ClInclude Include="Include\gameobject.h" />
-    <ClInclude Include="Include\mymath.h" />
-    <ClInclude Include="Include\scene.h" />
-    <ClInclude Include="Include\transform.h" />
-    <ClInclude Include="Include\shader.h" />
-    <ClInclude Include="Include\testscene.h" />
+    <ClInclude Include="src\core\Camera.h" />
+    <ClInclude Include="src\core\CharacterController.h" />
+    <ClInclude Include="src\core\Component.h" />
+    <ClInclude Include="src\core\GameObject.h" />
+    <ClInclude Include="src\utils\MyMath.h" />
+    <ClInclude Include="src\core\Scene.h" />
+    <ClInclude Include="src\core\Transform.h" />
+    <ClInclude Include="src\render\Shader.h" />
+    <ClInclude Include="src\test\TestScene.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ressources\Shaders\default.shader" />
+    <None Include="ressources\Shaders\default.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,7 +3,7 @@
 #include <fstream> 
 #include <glad/glad.h>
 #include <iostream>
-#include "MyMath.h"
+#include "utils/MyMath.h"
 
 Shader::Shader() : id(0) { }
 

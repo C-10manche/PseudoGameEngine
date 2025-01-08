@@ -1,6 +1,6 @@
 #include "TestScene.h"
-#include "GameObject.h"
-#include "CharacterController.h"
+#include "core/GameObject.h"
+#include "core/CharacterController.h"
 
 void TestScene::init() {
 

@@ -1,13 +1,13 @@
 #include <iostream>
-#include "GameObject.h"	 
-#include "CharacterController.h"
-#include "MyMath.h"	 	
-#include "Transform.h"
-#include "TestScene.h"
+#include "core/GameObject.h"	 
+#include "core/CharacterController.h"
+#include "utils/MyMath.h"	 	
+#include "core/Transform.h"
+#include "test/TestScene.h"
                 
 #include <glad/glad.h>
 #include <glfw3.h>  
-#include "Shader.h"	
+#include "render/Shader.h"	
 
 int main() {
     GLFWwindow* window;
@@ -100,7 +100,7 @@ int main() {
 
     glBindVertexArray(0);
 
-    Shader shader("Ressources/Shaders/default.shader");
+    Shader shader("ressources/shaders/default.shader");
 
     TestScene scene;
     scene.init();

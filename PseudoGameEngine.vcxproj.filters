@@ -15,64 +15,70 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\main.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\GameObject.cpp">
+    <ClCompile Include="src\core\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Component.cpp">
+    <ClCompile Include="src\core\Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Scene.cpp">
+    <ClCompile Include="src\core\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\MyMath.cpp">
+    <ClCompile Include="src\utils\MyMath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Shader.cpp">
+    <ClCompile Include="src\render\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\CharacterController.cpp">
+    <ClCompile Include="src\core\CharacterController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Transform.cpp">
+    <ClCompile Include="src\core\Transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\TestScene.cpp">
+    <ClCompile Include="src\test\TestScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\charactercontroller.h">
+    <ClInclude Include="src\core\CharacterController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\mymath.h">
+    <ClInclude Include="src\utils\MyMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\transform.h">
+    <ClInclude Include="src\core\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\component.h">
+    <ClInclude Include="src\core\Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\gameobject.h">
+    <ClInclude Include="src\core\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\scene.h">
+    <ClInclude Include="src\core\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\shader.h">
+    <ClInclude Include="src\render\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\testscene.h">
+    <ClInclude Include="src\test\TestScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ressources\Shaders\default.shader" />
+    <None Include="ressources\Shaders\default.shader" />
   </ItemGroup>
 </Project>
