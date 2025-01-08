@@ -76,7 +76,6 @@ Vec3f Vec3f::ZERO() {
 	return Vec3f(0.0f, 0.0f, 0.0f);
 }
 
-
 // MAT4F
 
 Mat4f::Mat4f() {

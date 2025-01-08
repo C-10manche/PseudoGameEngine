@@ -107,7 +107,7 @@ int main() {
 
     const double pi = 3.14159265358979323846;
 
-    glEnable(GL_DEPTH_TEST);
+    //glEnable(GL_DEPTH_TEST);
 
     while (!glfwWindowShouldClose(window))
     {
@@ -127,8 +127,8 @@ int main() {
             0.0f, 0.0f, 1.0f, 0.0f,
             0.0f, 0.0f, 0.0f, 1.0f);
 
-        float angle = glfwGetTime() * 60;
-        float angle_rad = angle * pi / 180.0f;
+        float angle = (float)glfwGetTime() * 60;
+        float angle_rad = angle * (float)pi / 180.0f;
         Mat4f rotation (
             std::cos(angle_rad), 0.0f, -std::sin(angle_rad), 0.0f,
             0.0f, 1.0f, 0.0f, 0.0f,
@@ -143,17 +143,29 @@ int main() {
 
         Mat4f model = translation * rotation * scale;
 
-        float l = -10, r = 10;
-        float t = -10, b = 10;
+        float l = -1, r = 1;
+        float t = -1, b = 1;
 
-        Mat4f projection (
+        float deg_fov = 90.0f;
+
+        float rad_fov = ((deg_fov * 0.5f) * (float)pi) / 180.0f;
+        float tan_fov = std::tanf(rad_fov);
+        float d = 1.0f / tan_fov;
+
+        Mat4f perspective(
+            d   , 0.0f, 0.0f, 0.0f,
+            0.0f, d   , 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 0.0f);
+
+        Mat4f orthographic(
             2.0f / (r - l), 0.0f, 0.0f, -(r + l) / (r - l),
             0.0f, 2.0f / (t - b), 0.0f, -(t + b) / (t - b),
             0.0f, 0.0f, 1.0f, 0.0f,
             0.0f, 0.0f, 0.0f, 1.0f);
 
 
-        Mat4f mvp = projection * model;
+        Mat4f mvp = translation;// perspective* model;
 
         // RENDER
         shader.use();
