@@ -9,6 +9,12 @@
 #include <glfw3.h>  
 #include "render/Shader.h"	
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+
+
+int screen_witdh = 800;
+int screen_height = 800;
+
 int main() {
     GLFWwindow* window;
 
@@ -19,8 +25,6 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    int screen_witdh = 800;
-    int screen_height = 600;
 
     window = glfwCreateWindow(screen_witdh, screen_height, "Graal on Graal", NULL, NULL);
     if (!window)
@@ -36,6 +40,8 @@ int main() {
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
+
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     // control fps
     glfwSwapInterval(0);
@@ -176,7 +182,7 @@ int main() {
         Mat4f orthographic(
             2.0f / (r - l), 0.0f, 0.0f, -(r + l) / (r - l),
             0.0f, 2.0f / (t - b), 0.0f, -(t + b) / (t - b),
-            0.0f, 0.0f, 1.0f, 0.0f,
+            0.0f, 0.0f, 2.0f / (far_z - near_z), -(far_z + near_z) / (far_z - near_z),
             0.0f, 0.0f, 0.0f, 1.0f
         );
 
@@ -202,4 +208,11 @@ int main() {
 
     glfwTerminate();
     return 0;
+}
+
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+    glViewport(0, 0, width, height);
+    screen_witdh = width;
+    screen_height = height;
 }
