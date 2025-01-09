@@ -19,7 +19,10 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow(800, 800, "Graal on Graal", NULL, NULL);
+    int screen_witdh = 800;
+    int screen_height = 600;
+
+    window = glfwCreateWindow(screen_witdh, screen_height, "Graal on Graal", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -107,7 +110,7 @@ int main() {
 
     const double pi = 3.14159265358979323846;
 
-    //glEnable(GL_DEPTH_TEST);
+    glEnable(GL_DEPTH_TEST); 
 
     while (!glfwWindowShouldClose(window))
     {
@@ -138,7 +141,7 @@ int main() {
         Mat4f translation (
             1.0f, 0.0f, 0.0f, 0.0f,
             0.0f, 1.0f, 0.0f, 0.0f,
-            0.0f, 0.0f, 1.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 3.0f,
             0.0f, 0.0f, 0.0f, 1.0f);
 
         Mat4f model = translation * rotation * scale;
@@ -152,29 +155,45 @@ int main() {
         float tan_fov = std::tanf(rad_fov);
         float d = 1.0f / tan_fov;
 
+        //aspect ratio
+        float ar = (float)screen_witdh / (float)screen_height;
+
+        float near_z = 1.0f;
+        float far_z = 10.0f;
+
+        float range_z = near_z - far_z;
+
+        float a_z = (-far_z - near_z) / range_z;
+        float b_z = 2.0f * far_z * near_z / range_z;
+
         Mat4f perspective(
-            d   , 0.0f, 0.0f, 0.0f,
+            d/ar, 0.0f, 0.0f, 0.0f,
             0.0f, d   , 0.0f, 0.0f,
-            0.0f, 0.0f, 1.0f, 0.0f,
-            0.0f, 0.0f, 1.0f, 0.0f);
+            0.0f, 0.0f, a_z, b_z,
+            0.0f, 0.0f, 1.0f, 0.0f
+        );
 
         Mat4f orthographic(
             2.0f / (r - l), 0.0f, 0.0f, -(r + l) / (r - l),
             0.0f, 2.0f / (t - b), 0.0f, -(t + b) / (t - b),
             0.0f, 0.0f, 1.0f, 0.0f,
-            0.0f, 0.0f, 0.0f, 1.0f);
+            0.0f, 0.0f, 0.0f, 1.0f
+        );
 
 
-        Mat4f mvp = translation;// perspective* model;
+        Mat4f mvp = perspective * model;
 
         // RENDER
-        shader.use();
-        shader.set_mat4("mvp", mvp.m);
+
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        shader.use();
+        shader.set_mat4("mvp", mvp.m);
+
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
 
         //
         glfwSwapBuffers(window);

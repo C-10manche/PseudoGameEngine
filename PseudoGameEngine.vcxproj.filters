@@ -79,6 +79,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ressources\Shaders\default.shader" />
+    <None Include="ressources\shaders\default.shader" />
   </ItemGroup>
 </Project>

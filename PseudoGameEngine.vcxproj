@@ -167,7 +167,7 @@
     <ClInclude Include="src\test\TestScene.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ressources\Shaders\default.shader" />
+    <None Include="ressources\shaders\default.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
