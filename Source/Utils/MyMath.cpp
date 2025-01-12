@@ -16,6 +16,14 @@ float Vec3f::magnitude() const {
 	return (float)sqrt(x * x + y * y + z * z);
 }
 
+Vec3f Vec3f::cross(Vec3f other) const {
+	Vec3f result;
+	result.x = this->y* other.z - other.y * this->z;
+	result.y = this->z* other.x - other.z * this->x;
+	result.z = this->x* other.y - other.x * this->y;
+	return result;
+}
+
 float Vec3f::sqr_magnitude() const {
 	return x * x + y * y + z * z;
 }
@@ -48,6 +56,24 @@ Vec3f& Vec3f::operator=(const Vec3f& _Vec3f) {
 		this->y = _Vec3f.y;
 		this->z = _Vec3f.z;
 	}
+	return *this;
+}
+Vec3f& Vec3f::operator*=(const Vec3f& _Vec3f) {
+	this->x *= _Vec3f.x;
+	this->y *= _Vec3f.y;
+	this->z *= _Vec3f.z;
+	return *this;
+}
+Vec3f& Vec3f::operator+=(const Vec3f& _Vec3f) {
+	this->x += _Vec3f.x;
+	this->y += _Vec3f.y;
+	this->z += _Vec3f.z;
+	return *this;
+}
+Vec3f& Vec3f::operator-=(const Vec3f& _Vec3f) {
+	this->x -= _Vec3f.x;
+	this->y -= _Vec3f.y;
+	this->z -= _Vec3f.z;
 	return *this;
 }
 

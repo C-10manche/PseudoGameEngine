@@ -36,8 +36,8 @@ void TestScene::init() {
     cube1->transform->position = { 1.0, 1.0f, 3.0f };
     MeshRenderer* cube1_mesh = cube1->add_component<MeshRenderer>();
     cube1_mesh->mesh = Mesh::generate_cube_mesh();
-    //cube1_mesh->material = new Material("default");
-    //cube1_mesh->material->vec3_properties["color"] = { 1.0f, 0.0f, 0.0f };
+    cube1_mesh->material = new Material("default");
+    cube1_mesh->material->vec3_properties["color"] = { 1.0f, 0.0f, 0.0f };
     cube1_mesh->set_up();
 	this->add_game_object(cube1);
 

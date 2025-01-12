@@ -3,9 +3,11 @@
 #include "../Utils/MyMath.h"
 #include "Transform.h"
 #include "Component.h"
+#include "../Input/Input.h"
 
-class Camera : public Component
-{
+#include <glfw3.h>  
+
+class Camera : public Component{
 public:
 
 	enum class Projection {
@@ -14,13 +16,16 @@ public:
 	};
 
 	Projection projection_type;
-	float fov;
-	Transform transform;
-	Vec3f up;
+
+
 	Mat4f perspective;
-	Mat4f projection;
+
+	float fov;
 
 	Camera();
 
+	void update(float delta_time);
+	//void handle_input(float delta_time);
+	Mat4f get_view_matrix();
 };
 

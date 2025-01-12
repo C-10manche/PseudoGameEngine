@@ -14,7 +14,9 @@ public:
 
 
 	float magnitude() const;
-	
+
+	Vec3f cross(Vec3f other) const;
+
 	float sqr_magnitude() const;
 
 	Vec3f normalize() const;
@@ -27,6 +29,9 @@ public:
 
 	Vec3f operator*(const float f) const;
 	Vec3f& operator=(const Vec3f& _Vec3f);
+	Vec3f& operator*=(const Vec3f& _Vec3f);
+	Vec3f& operator+=(const Vec3f& _Vec3f);
+	Vec3f& operator-=(const Vec3f& _Vec3f);
 
 	std::string print() const;
 
