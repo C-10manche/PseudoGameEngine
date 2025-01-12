@@ -1,8 +1,11 @@
 #include "Scene.h"
-#include "GameObject.h"
+#include "../GameObject/GameObject.h"
 
-Scene::Scene() : is_running(false)
+#include <glfw3.h>  
+
+Scene::Scene(GLFWwindow* _window) : is_running(false), window(_window)
 {
+
 }
 
 Scene::~Scene()

@@ -3,7 +3,7 @@
 #include <fstream> 
 #include <glad/glad.h>
 #include <iostream>
-#include "utils/MyMath.h"
+#include "../Utils/MyMath.h"
 
 Shader::Shader() : id(0) { }
 
@@ -11,11 +11,11 @@ Shader::Shader(std::string file_path) : id(0) {
 	std::ifstream shader_file;
 	shader_file.open(file_path);
 
+
 	if (shader_file.is_open()) {
 		std::string current_line;
 		std::string sources[2];
 		int index = -1;
-
 		while (std::getline(shader_file, current_line)) {
 			if (current_line.find("#VERTEX SHADER") != std::string::npos)
 			{
@@ -124,6 +124,11 @@ void Shader::set_int(const std::string& name, int value) const {
 void Shader::set_float(const std::string& name, float value) const {
 	int uniform_location = glGetUniformLocation(this->id, name.c_str());
 	glUniform1f(uniform_location, value);
+}
+
+void Shader::set_vec3(const std::string& name, float* value) const {
+	int uniform_location = glGetUniformLocation(this->id, name.c_str());
+	glUniform3fv(uniform_location, 1, value);
 }
 
 void Shader::set_mat4(const std::string& name, float* value) const {

@@ -84,10 +84,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLAD\include;$(SolutionDir)Dependencies\GLFW\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;user32.lib;gdi32.lib;opengl32.lib;Shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -98,12 +101,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLAD\include;$(SolutionDir)Dependencies\GLFW\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;user32.lib;gdi32.lib;opengl32.lib;Shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -112,14 +118,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\dev\PseudoGameEngine\src;$(SolutionDir)dependencies/GLFW/include;$(SolutionDir)dependencies/GLAD/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLAD\include;$(SolutionDir)Dependencies\GLFW\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Opengl32.lib;glfw3.lib;User32.lib;Gdi32.lib;Shell32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies/GLFW/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;user32.lib;gdi32.lib;opengl32.lib;Shell32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,7 +136,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\dev\PseudoGameEngine\src;$(SolutionDir)dependencies/GLFW/include;$(SolutionDir)dependencies/GLAD/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLAD\include;$(SolutionDir)Dependencies\GLFW\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -138,36 +144,50 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Opengl32.lib;glfw3.lib;User32.lib;Gdi32.lib;Shell32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies/GLFW/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;user32.lib;gdi32.lib;opengl32.lib;Shell32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\core\Camera.cpp" />
-    <ClCompile Include="src\core\CharacterController.cpp" />
-    <ClCompile Include="src\core\Transform.cpp" />
-    <ClCompile Include="src\render\Shader.cpp" />
-    <ClCompile Include="src\core\Component.cpp" />
-    <ClCompile Include="src\core\GameObject.cpp" />
+    <ClCompile Include="Source\Render\Mesh.cpp" />
+    <ClCompile Include="Source\Render\Material.cpp" />
+    <ClCompile Include="Source\Components\MeshRenderer.cpp" />
+    <ClCompile Include="Source\Components\Camera.cpp" />
+    <ClCompile Include="Source\Components\CharacterController.cpp" />
+    <ClCompile Include="Source\Components\Transform.cpp" />
+    <ClCompile Include="Source\Render\Shader.cpp" />
+    <ClCompile Include="Source\Components\Component.cpp" />
+    <ClCompile Include="Source\GameObject\GameObject.cpp" />
     <ClCompile Include="glad.c" />
-    <ClCompile Include="src\utils\MyMath.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\core\Scene.cpp" />
-    <ClCompile Include="src\test\TestScene.cpp" />
+    <ClCompile Include="Source\Utils\MyMath.cpp" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Scene\Scene.cpp" />
+    <ClCompile Include="Source\Scene\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\core\Camera.h" />
-    <ClInclude Include="src\core\CharacterController.h" />
-    <ClInclude Include="src\core\Component.h" />
-    <ClInclude Include="src\core\GameObject.h" />
-    <ClInclude Include="src\utils\MyMath.h" />
-    <ClInclude Include="src\core\Scene.h" />
-    <ClInclude Include="src\core\Transform.h" />
-    <ClInclude Include="src\render\Shader.h" />
-    <ClInclude Include="src\test\TestScene.h" />
+    <ClInclude Include="Dependencies\GLAD\include\glad\glad.h" />
+    <ClInclude Include="Dependencies\GLAD\include\KHR\khrplatform.h" />
+    <ClInclude Include="Dependencies\GLFW\include\glfw3.h" />
+    <ClInclude Include="Dependencies\GLFW\include\glfw3native.h" />
+    <ClInclude Include="Source\Render\Mesh.h" />
+    <ClInclude Include="Source\Render\Material.h" />
+    <ClInclude Include="Source\Components\MeshRenderer.h" />
+    <ClInclude Include="Source\Components\Camera.h" />
+    <ClInclude Include="Source\Components\CharacterController.h" />
+    <ClInclude Include="Source\Components\Component.h" />
+    <ClInclude Include="Source\GameObject\GameObject.h" />
+    <ClInclude Include="Source\Utils\MyMath.h" />
+    <ClInclude Include="Source\Scene\Scene.h" />
+    <ClInclude Include="Source\Components\Transform.h" />
+    <ClInclude Include="Source\Render\Shader.h" />
+    <ClInclude Include="Source\Scene\TestScene.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ressources\shaders\default.shader" />
+    <None Include="Dependencies\GLFW\lib\glfw3.pdb" />
+    <None Include="Resources\Shaders\default.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Dependencies\GLFW\lib\glfw3.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

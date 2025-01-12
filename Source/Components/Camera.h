@@ -1,6 +1,6 @@
 #pragma once
 
-#include "utils/MyMath.h"
+#include "../Utils/MyMath.h"
 #include "Transform.h"
 #include "Component.h"
 

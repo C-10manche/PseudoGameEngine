@@ -1,7 +1,7 @@
 #pragma once
 
 #include "component.h" 
-#include "utils/MyMath.h"	
+#include "../Utils/MyMath.h"	
 
 #include <iostream>	
 

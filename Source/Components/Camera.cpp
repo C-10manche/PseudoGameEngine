@@ -1,5 +1,5 @@
 #include "Camera.h"
-#include "utils/MyMath.h"
+#include "../Utils/MyMath.h"
 
 Camera::Camera() {
 

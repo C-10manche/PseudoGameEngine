@@ -1,7 +1,10 @@
 #include "MyMath.h"
 #include <string>
 
-// VEC3F
+// Constants
+const double PI = 3.14159265358979323846;
+
+// Vec3f
 
 Vec3f::Vec3f() : x(0.0f), y(0.0f), z(0.0f) {}
 Vec3f::Vec3f(float _f) : x(_f), y(_f), z(_f) {}
@@ -10,7 +13,7 @@ Vec3f::Vec3f(const Vec3f& _Vec3f) : x(_Vec3f.x), y(_Vec3f.y), z(_Vec3f.z) {}
 
 
 float Vec3f::magnitude() const {
-	return sqrt(x * x + y * y + z * z);
+	return (float)sqrt(x * x + y * y + z * z);
 }
 
 float Vec3f::sqr_magnitude() const {
@@ -75,7 +78,7 @@ Vec3f Vec3f::ZERO() {
 	return Vec3f(0.0f, 0.0f, 0.0f);
 }
 
-// MAT4F
+// Mat4f
 
 Mat4f::Mat4f() {
 	// INITIALIZE TO IDENTITY MATRIX

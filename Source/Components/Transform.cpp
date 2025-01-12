@@ -1,4 +1,5 @@
 #include "Transform.h"
+#include "../Utils/MyMath.h"
 
 Transform::Transform() : position(Vec3f()), rotation(Vec3f()), scale(Vec3f()) {
 }

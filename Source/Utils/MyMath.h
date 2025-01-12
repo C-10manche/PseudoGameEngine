@@ -1,6 +1,8 @@
 #pragma once   
 #include <string>
 
+extern const double PI;
+
 class Vec3f {
 public:
 	float x, y, z;

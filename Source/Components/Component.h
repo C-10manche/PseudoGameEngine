@@ -7,6 +7,8 @@ public:
 
 	Component();
 
+	virtual ~Component();
+
 	virtual void ready();
 
 	virtual void update(float delta_time);

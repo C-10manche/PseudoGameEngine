@@ -3,6 +3,9 @@
 #include <string>	 
 #include <vector> 
 
+#include <glad/glad.h>
+#include <glfw3.h>  
+
 class GameObject;
 
 class Scene {
@@ -10,11 +13,12 @@ class Scene {
 public:
 
 	std::vector<GameObject*> game_objects;
+	GLFWwindow* window;
 
 	bool is_running;
 
-	Scene();
-	~Scene();
+	Scene(GLFWwindow* _window);
+	virtual ~Scene();
 
 	virtual void init();
 
