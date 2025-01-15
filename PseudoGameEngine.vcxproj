@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Components\CameraController.cpp" />
     <ClCompile Include="Source\Input\Input.cpp" />
     <ClCompile Include="Source\Render\Mesh.cpp" />
     <ClCompile Include="Source\Render\Material.cpp" />
@@ -166,6 +167,7 @@
     <ClCompile Include="Source\Scene\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Components\CameraController.h" />
     <ClInclude Include="Dependencies\GLAD\include\glad\glad.h" />
     <ClInclude Include="Dependencies\GLAD\include\KHR\khrplatform.h" />
     <ClInclude Include="Dependencies\GLFW\include\glfw3.h" />

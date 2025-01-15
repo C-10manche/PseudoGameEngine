@@ -4,12 +4,14 @@
 #include "../Render/Shader.h"
 #include "../Render/Material.h"
 #include <unordered_map>
+#include "../Components/Camera.h"
 
 class TestScene : public Scene {
 public:
 
 	std::unordered_map<std::string, Shader*> shaders;
 	Material* defaultMaterial;
+	Camera* camera;
 
 	TestScene(GLFWwindow* _window);
 

@@ -7,7 +7,8 @@
 #include "../Render/Material.h"
 #include "../Components/Transform.h"
 #include "../Render/Mesh.h"
-#include "../Render/Material.h"
+#include "../Components/Camera.h"
+#include "../Components/CameraController.h"
 
 #include <glfw3.h>  
 #include <string>
@@ -51,6 +52,14 @@ void TestScene::init() {
     cube2_mesh->material->vec3_properties["color"] = { 0.0f, 1.0f, 0.0f };
     cube2_mesh->set_up();
     this->add_game_object(cube2);
+
+    GameObject* main_cam = new GameObject();
+    main_cam->transform->position = { 0.0f, 0.0f, 0.0f };
+    main_cam->name = "Main Camera";
+    camera = main_cam->add_component<Camera>();
+    main_cam->add_component<CameraController>();
+    this->add_game_object(main_cam);
+
 }
 
 void TestScene::update(float delta_time) {
@@ -62,33 +71,32 @@ void TestScene::update(float delta_time) {
     int windows_width, windows_height;
     glfwGetFramebufferSize(window, &windows_width, &windows_height);
 
-    Mat4f scale(
-        1.0f, 0.0f, 0.0f, 0.0f,
-        0.0f, 1.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 0.0f, 1.0f);
+    //some old code
+    {
+        //Mat4f scale(
+        //    1.0f, 0.0f, 0.0f, 0.0f,
+        //    0.0f, 1.0f, 0.0f, 0.0f,
+        //    0.0f, 0.0f, 1.0f, 0.0f,
+        //    0.0f, 0.0f, 0.0f, 1.0f);
 
-    float angle = (float)glfwGetTime() * 60;
-    float angle_rad = angle * (float)PI / 180.0f;
-    Mat4f rotation(
-        std::cos(angle_rad), 0.0f, -std::sin(angle_rad), 0.0f,
-        0.0f, 1.0f, 0.0f, 0.0f,
-        std::sin(angle_rad), 0.0f, std::cos(angle_rad), 0.0f,
-        0.0f, 0.0f, 0.0f, 1.0f);
+        //float angle = (float)glfwGetTime() * 60;
+        //float angle_rad = angle * (float)PI / 180.0f;
+        //Mat4f rotation(
+        //    std::cos(angle_rad), 0.0f, -std::sin(angle_rad), 0.0f,
+        //    0.0f, 1.0f, 0.0f, 0.0f,
+        //    std::sin(angle_rad), 0.0f, std::cos(angle_rad), 0.0f,
+        //    0.0f, 0.0f, 0.0f, 1.0f);
 
-    Mat4f translation(
-        1.0f, 0.0f, 0.0f, 0.0f,
-        0.0f, 1.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, 1.0f, 3.0f,
-        0.0f, 0.0f, 0.0f, 1.0f);
+        //Mat4f translation(
+        //    1.0f, 0.0f, 0.0f, 0.0f,
+        //    0.0f, 1.0f, 0.0f, 0.0f,
+        //    0.0f, 0.0f, 1.0f, 3.0f,
+        //    0.0f, 0.0f, 0.0f, 1.0f);
 
-    Mat4f model = translation * rotation * scale;
-
-    float l = -1, r = 1;
-    float t = -1, b = 1;
+        //Mat4f model = translation * rotation * scale;
+    }
 
     float deg_fov = 90.0f;
-
     float rad_fov = ((deg_fov * 0.5f) * (float)PI) / 180.0f;
     float tan_fov = std::tanf(rad_fov);
     float d = 1.0f / tan_fov;
@@ -96,10 +104,8 @@ void TestScene::update(float delta_time) {
     // aspect ratio
     float ar = (float)windows_width / (float)windows_height;
 
-
-    float near_z = 1.0f;
+    float near_z = 0.01f;
     float far_z = 10.0f;
-
     float range_z = near_z - far_z;
 
     float a_z = (-far_z - near_z) / range_z;
@@ -109,17 +115,21 @@ void TestScene::update(float delta_time) {
         d / ar, 0.0f, 0.0f, 0.0f,
         0.0f, d, 0.0f, 0.0f,
         0.0f, 0.0f, a_z, b_z,
-        0.0f, 0.0f, 1.0f, 0.0f
-    );
+        0.0f, 0.0f, 1.0f, 0.0f);
 
-    Mat4f orthographic(
-        2.0f / (r - l), 0.0f, 0.0f, -(r + l) / (r - l),
-        0.0f, 2.0f / (t - b), 0.0f, -(t + b) / (t - b),
-        0.0f, 0.0f, 2.0f / (far_z - near_z), -(far_z + near_z) / (far_z - near_z),
-        0.0f, 0.0f, 0.0f, 1.0f
-    );
+    //float l = -1, r = 1;
+    //float t = -1, b = 1;
 
-    Mat4f mvp = perspective * model;
+    //Mat4f orthographic(
+    //    2.0f / (r - l), 0.0f, 0.0f, -(r + l) / (r - l),
+    //    0.0f, 2.0f / (t - b), 0.0f, -(t + b) / (t - b),
+    //    0.0f, 0.0f, 2.0f / (far_z - near_z), -(far_z + near_z) / (far_z - near_z),
+    //    0.0f, 0.0f, 0.0f, 1.0f
+    //);
+
+    //Mat4f mvp = perspective * model;
+
+
 
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -145,15 +155,27 @@ void TestScene::update(float delta_time) {
 
             Transform* transform = go->transform;
 
-            Mat4f t = Mat4f(
+            Mat4f scale(
+                1.0f, 0.0f, 0.0f, transform->scale.x,
+                0.0f, 1.0f, 0.0f, transform->scale.y,
+                0.0f, 0.0f, 1.0f, transform->scale.z,
+                0.0f, 0.0f, 0.0f, 1.0f);
+            Mat4f rotation(
+                1.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 1.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 1.0f, 0.0f,
+                0.0f, 0.0f, 0.0f, 1.0f);
+            Mat4f translation = Mat4f(
                 1.0f, 0.0f, 0.0f, transform->position.x,
                 0.0f, 1.0f, 0.0f, transform->position.y,
                 0.0f, 0.0f, 1.0f, transform->position.z,
                 0.0f, 0.0f, 0.0f, 1.0f);
-            
-            Mat4f m = perspective * t * rotation;
+            Mat4f model = translation * rotation * scale;
 
-            shader->set_mat4("mvp", m.m);
+            
+            Mat4f mvp = perspective * camera->get_view_matrix() * model;
+
+            shader->set_mat4("mvp", mvp.m);
             for (std::pair<const std::string, std::array<float, 3>>& prop : material->vec3_properties)
             {
                 shader->set_vec3(prop.first, &prop.second[0]);

@@ -1,6 +1,7 @@
 #include <iostream>              
 #include <glad/glad.h>
 #include <glfw3.h>  
+#include "Input/Input.h"
 
 #include "Scene/TestScene.h"
 
@@ -44,6 +45,7 @@ int main() {
     bool is_scene_running = false;
 
 
+    Input::set_window(window);
     TestScene scene(window);
     scene.init();
 
@@ -58,7 +60,6 @@ int main() {
             scene.ready();
         }
         scene.update(delta_time);    
-
 
         glfwSwapBuffers(window);
         glfwPollEvents();
