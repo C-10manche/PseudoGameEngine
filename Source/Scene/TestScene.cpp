@@ -53,12 +53,12 @@ void TestScene::init() {
     cube2_mesh->set_up();
     this->add_game_object(cube2);
 
-    GameObject* main_cam = new GameObject();
-    main_cam->transform->position = { 0.0f, 0.0f, 0.0f };
-    main_cam->name = "Main Camera";
-    camera = main_cam->add_component<Camera>();
-    main_cam->add_component<CameraController>();
-    this->add_game_object(main_cam);
+    GameObject* main_camera = new GameObject();
+    main_camera->transform->position = { 0.0f, 0.0f, 0.0f };
+    main_camera->name = "Main Camera";
+    camera = main_camera->add_component<Camera>();
+    main_camera->add_component<CameraController>();
+    this->add_game_object(main_camera);
 
 }
 
