@@ -5,6 +5,6 @@
 
 class Terrain : public Component {
 public: 
-	void update (float delta_time) override;
+	/*void update (float delta_time) override;*/
 };
 
