@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Utils\Quaternion.cpp" />
     <ClCompile Include="Source\Components\CameraController.cpp" />
     <ClCompile Include="Source\Input\Input.cpp" />
     <ClCompile Include="Source\Render\Mesh.cpp" />
@@ -165,8 +166,10 @@
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Scene\Scene.cpp" />
     <ClCompile Include="Source\Scene\TestScene.cpp" />
+    <ClCompile Include="Source\Components\Terrain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Utils\Quaternion.h" />
     <ClInclude Include="Source\Components\CameraController.h" />
     <ClInclude Include="Dependencies\GLAD\include\glad\glad.h" />
     <ClInclude Include="Dependencies\GLAD\include\KHR\khrplatform.h" />
@@ -185,6 +188,7 @@
     <ClInclude Include="Source\Components\Transform.h" />
     <ClInclude Include="Source\Render\Shader.h" />
     <ClInclude Include="Source\Scene\TestScene.h" />
+    <ClInclude Include="Source\Components\Terrain.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\GLFW\lib\glfw3.pdb" />

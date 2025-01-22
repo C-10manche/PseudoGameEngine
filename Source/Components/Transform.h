@@ -1,7 +1,8 @@
 #pragma once
 
 #include "component.h" 
-#include "../Utils/MyMath.h"	
+#include "../Utils/MyMath.h"
+#include "../Utils/Quaternion.h"	
 
 #include <iostream>	
 
@@ -10,10 +11,9 @@ public:
 	Transform();
 
 	Vec3f position;
-	Vec3f rotation;
+	Quaternion rotation;
 	Vec3f scale;
-
-	Vec3f right();
-	Vec3f up();
-	Vec3f forward();
+	Vec3f up;
+	Vec3f forward;
+	Vec3f right;
 };

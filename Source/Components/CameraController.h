@@ -9,11 +9,16 @@ class CameraController : public Component
 {
 public:
 	float speed;
+	float sensitivity;
+	float yaw, pitch;
 
 	void ready() override;
 
 	void update(float delta_time) override;
 
-	void handle_movements(float delta_time);
+	void handle_movement(float delta_time);
+	void handle_orientation(float delta_time, Vec3f axis);
+
+
 };
 

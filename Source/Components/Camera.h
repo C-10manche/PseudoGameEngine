@@ -21,6 +21,8 @@ public:
 	Camera();
 
 	void update(float delta_time);
+	Mat4f get_rotation_matrix();
+	Mat4f get_translation_matrix();
 	Mat4f get_view_matrix();
 };
 

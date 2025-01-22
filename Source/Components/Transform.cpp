@@ -2,21 +2,12 @@
 #include "../Utils/MyMath.h"
 #include <cmath>
 
-Transform::Transform() :	position(Vec3f()), 
-							rotation(Vec3f()), 
-							scale(Vec3f()) 
+Transform::Transform()
 {
-
-}
-
-Vec3f Transform::right() {
-	return Vec3f();
-}
-
-Vec3f Transform::up() {
-	return Vec3f();
-}
-
-Vec3f Transform::forward() {
-	return Vec3f();
+	position = Vec3f();
+	rotation = Quaternion();
+	scale = Vec3f();
+	up = Vec3f();
+	forward = Vec3f();
+	right = Vec3f();
 }

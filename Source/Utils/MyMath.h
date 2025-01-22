@@ -15,19 +15,23 @@ public:
 
 	float magnitude() const;
 
-	Vec3f cross(Vec3f other) const;
+	Vec3f cross(const Vec3f& other) const;
+
+	float dot(const Vec3f& _Vec3f) const;
 
 	float sqr_magnitude() const;
 
-	Vec3f normalize() const;
+	Vec3f normalized() const;
+
+	void rotate(const Vec3f& _axis, float _angle, bool _alrdy_in_rad = false);
+
+	Vec3f operator-() const;
+
+	Vec3f operator/(float f) const;
+	Vec3f operator*(float f) const;
 
 	Vec3f operator+(const Vec3f& _Vec3f) const;
-
 	Vec3f operator-(const Vec3f& _Vec3f) const;
-
-	Vec3f operator/(const float f) const;
-
-	Vec3f operator*(const float f) const;
 	Vec3f& operator=(const Vec3f& _Vec3f);
 	Vec3f& operator*=(const Vec3f& _Vec3f);
 	Vec3f& operator+=(const Vec3f& _Vec3f);
@@ -43,6 +47,12 @@ public:
 	static Vec3f BACKWARD();
 	static Vec3f ZERO();
 };
+
+
+inline const Vec3f operator*(float f, const Vec3f& _Vec3f)
+{
+	return Vec3f(f * _Vec3f.x, f * _Vec3f.y, f * _Vec3f.z);
+}
 																					 
 class Mat4f {
 public:
@@ -61,3 +71,5 @@ public:
 
 	std::string to_string() const;
 };
+
+float deg_to_rad(float deg_angle);

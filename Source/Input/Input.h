@@ -5,6 +5,13 @@
 class Input
 {
 public:
+    /*static bool firstMouse;
+    static float lastX;
+    static float lastY;
+	static float mouse_x;
+	static float mouse_y;*/
+
+
 
 	Input();
 
@@ -16,6 +23,9 @@ public:
 
 
 	static void set_window(GLFWwindow* window);
+
+	static void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
+
 
 private:
 

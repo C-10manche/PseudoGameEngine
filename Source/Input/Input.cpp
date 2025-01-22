@@ -1,7 +1,9 @@
 #include "Input.h"
 #include <glfw3.h>  
+#include "../Utils/MyMath.h"
 
 GLFWwindow* Input::window = nullptr;
+
 
 Input::Input() {
 }
@@ -9,6 +11,25 @@ Input::Input() {
 void Input::set_window(GLFWwindow* window)
 {
 	Input::window = window;
+}
+
+void Input::mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
+{
+    float xpos = static_cast<float>(xposIn);
+    float ypos = static_cast<float>(yposIn);
+
+    //if (firstMouse)
+    //{
+    //    lastX = xpos;
+    //    lastY = ypos;
+    //    firstMouse = false;
+    //}
+
+    //mouse_x = xpos - lastX;
+    //mouse_y = lastY - ypos; // reversed since y-coordinates go from bottom to top
+    //lastX = xpos;
+    //lastY = ypos;
+
 }
 
 bool Input::is_pressed(char key_value) {

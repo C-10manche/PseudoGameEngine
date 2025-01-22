@@ -15,7 +15,7 @@
 #include <unordered_map>
 
 TestScene::TestScene(GLFWwindow* _window) :	Scene(_window) {
-
+    camera = NULL;
     shaders["default"] = new Shader("Resources/Shaders/default.shader");
 
     defaultMaterial = new Material("default");

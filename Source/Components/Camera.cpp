@@ -13,13 +13,42 @@ Camera::Camera(){
 
 Mat4f Camera::get_view_matrix() {
 
+    const Mat4f& rotation_matrix = get_rotation_matrix();
+    const Mat4f& translation_matrix = get_translation_matrix();
+    const Mat4f& view_matrix = translation_matrix;// *rotation_matrix;
+    return view_matrix;
+}
+
+Mat4f Camera::get_rotation_matrix()
+{
+    const Transform& transform = *(game_object->transform);
+    Vec3f u,v,n;
+
+    n = transform.position - transform.forward.normalized();
+    u = transform.up.cross(n);
+    u = transform.up.normalized();
+    v = n.cross(u);
+
+    Mat4f rotation_mat(
+        u.x,  u.y,  u.z,  0.0f,
+        v.x,  v.y,  v.z,  0.0f,
+        n.x,  n.y,  n.z,  0.0f,
+        0.0f, 0.0f, 0.0f, 1.0f
+    );
+
+    return rotation_mat;
+}
+
+Mat4f Camera::get_translation_matrix()
+{
     Transform* transform = game_object->transform;
 
     Mat4f translation_mat(
         1.0f, 0.0f, 0.0f, -transform->position.x,
         0.0f, 1.0f, 0.0f, -transform->position.y,
         0.0f, 0.0f, 1.0f, -transform->position.z,
-        0.0f, 0.0f, 0.0f, 1.0f);
+        0.0f, 0.0f, 0.0f, 1.0f
+    );
 
     return translation_mat;
 }

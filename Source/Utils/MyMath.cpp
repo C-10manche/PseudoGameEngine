@@ -1,4 +1,5 @@
 #include "MyMath.h"
+#include "Quaternion.h"
 #include <string>
 
 // Constants
@@ -16,7 +17,7 @@ float Vec3f::magnitude() const {
 	return (float)sqrt(x * x + y * y + z * z);
 }
 
-Vec3f Vec3f::cross(Vec3f other) const {
+Vec3f Vec3f::cross(const Vec3f& other) const {
 	Vec3f result;
 	result.x = this->y* other.z - other.y * this->z;
 	result.y = this->z* other.x - other.z * this->x;
@@ -24,13 +25,35 @@ Vec3f Vec3f::cross(Vec3f other) const {
 	return result;
 }
 
+float Vec3f::dot(const Vec3f& _Vec3f) const
+{
+	return x * _Vec3f.x + y * _Vec3f.y + z * _Vec3f.z;
+}
+
 float Vec3f::sqr_magnitude() const {
 	return x * x + y * y + z * z;
 }
 
-Vec3f Vec3f::normalize() const {
+Vec3f Vec3f::normalized() const {
 	float magnitude = this->magnitude();
 	return magnitude == 0 ? Vec3f() : Vec3f(*this) / magnitude;
+}
+
+void Vec3f::rotate(const Vec3f& _axis, float _angle, bool _alrdy_in_rad)
+{
+	Quaternion q(_axis, _angle, _alrdy_in_rad);
+
+	Quaternion r = q * (*this) * q.conjugated();
+
+	x = r.v.x;
+	y = r.v.y;
+	z = r.v.z;
+
+}
+
+Vec3f Vec3f::operator-() const
+{
+	return Vec3f(-(this->x), -(this->y), -(this->z));
 }
 
 Vec3f Vec3f::operator+(const Vec3f& _Vec3f) const {
@@ -159,4 +182,10 @@ std::string Mat4f::to_string() const {
 	}
 
 	return matrix_string;
+}
+
+float deg_to_rad(float deg_angle)
+{
+	float rad_angle = (deg_angle * (float)PI) / 180.0f;
+	return rad_angle;
 }
