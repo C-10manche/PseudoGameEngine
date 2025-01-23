@@ -2,6 +2,7 @@
 #include "../Utils/MyMath.h"
 #include "../Input/Input.h"
 #include "../GameObject/GameObject.h"
+#include "../Components/Transform.h"
 
 #include <glfw3.h>  
 
@@ -21,13 +22,12 @@ Mat4f Camera::get_view_matrix() {
 
 Mat4f Camera::get_rotation_matrix()
 {
-    const Transform& transform = *(game_object->transform);
+    Transform* transform = game_object->transform;
     Vec3f u,v,n;
-
-    n = transform.position - transform.forward.normalized();
-    u = transform.up.cross(n);
-    u = transform.up.normalized();
-    v = n.cross(u);
+   
+    u = transform->get_right();
+    v = transform->get_up();
+    n = transform->get_forward();
 
     Mat4f rotation_mat(
         u.x,  u.y,  u.z,  0.0f,

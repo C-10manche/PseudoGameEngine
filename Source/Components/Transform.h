@@ -13,7 +13,10 @@ public:
 	Vec3f position;
 	Quaternion rotation;
 	Vec3f scale;
-	Vec3f up;
-	Vec3f forward;
-	Vec3f right;
+
+	Vec3f get_right();
+	Vec3f get_up();
+	Vec3f get_forward();
+
+	Mat4f get_model_matrix();
 };

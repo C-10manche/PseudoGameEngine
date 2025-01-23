@@ -8,15 +8,15 @@ public:
 	float w;
 	Vec3f v;
 
-	Quaternion() {};
+	Quaternion();
+	Quaternion(float _w, Vec3f _v);
 	Quaternion(const Vec3f& _axis, float _angle, bool _alrdy_in_rad = false);
 
-	Quaternion conjugated();
+	Quaternion conjugate();
 
-	Quaternion operator*(const Vec3f& _vec3f) const;
+	Vec3f rotate(Vec3f _v);
+
 	Quaternion operator*(const Quaternion& _quat) const;
-
-
-
+	Quaternion operator*(const Vec3f& _v) const;
 };
 

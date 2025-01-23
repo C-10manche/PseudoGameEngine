@@ -36,19 +36,18 @@ float Vec3f::sqr_magnitude() const {
 
 Vec3f Vec3f::normalized() const {
 	float magnitude = this->magnitude();
-	return magnitude == 0 ? Vec3f() : Vec3f(*this) / magnitude;
+	return magnitude == 0 ? Vec3f() : *this / magnitude;
 }
 
 void Vec3f::rotate(const Vec3f& _axis, float _angle, bool _alrdy_in_rad)
 {
 	Quaternion q(_axis, _angle, _alrdy_in_rad);
 
-	Quaternion r = q * (*this) * q.conjugated();
+	Vec3f result = q.rotate(*this);
 
-	x = r.v.x;
-	y = r.v.y;
-	z = r.v.z;
-
+	x = result.x;
+	y = result.y;
+	z = result.z;
 }
 
 Vec3f Vec3f::operator-() const

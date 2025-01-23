@@ -154,26 +154,7 @@ void TestScene::update(float delta_time) {
             shader->use();
 
             Transform* transform = go->transform;
-
-            Mat4f scale(
-                1.0f, 0.0f, 0.0f, transform->scale.x,
-                0.0f, 1.0f, 0.0f, transform->scale.y,
-                0.0f, 0.0f, 1.0f, transform->scale.z,
-                0.0f, 0.0f, 0.0f, 1.0f);
-            Mat4f rotation(
-                1.0f, 0.0f, 0.0f, 0.0f,
-                0.0f, 1.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, 1.0f, 0.0f,
-                0.0f, 0.0f, 0.0f, 1.0f);
-            Mat4f translation = Mat4f(
-                1.0f, 0.0f, 0.0f, transform->position.x,
-                0.0f, 1.0f, 0.0f, transform->position.y,
-                0.0f, 0.0f, 1.0f, transform->position.z,
-                0.0f, 0.0f, 0.0f, 1.0f);
-            Mat4f model = translation * rotation * scale;
-
-            
-            Mat4f mvp = perspective * camera->get_view_matrix() * model;
+            Mat4f mvp = perspective * camera->get_view_matrix() * transform->get_model_matrix();
 
             shader->set_mat4("mvp", mvp.m);
             for (std::pair<const std::string, std::array<float, 3>>& prop : material->vec3_properties)

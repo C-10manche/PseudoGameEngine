@@ -47,12 +47,6 @@ public:
 	static Vec3f BACKWARD();
 	static Vec3f ZERO();
 };
-
-
-inline const Vec3f operator*(float f, const Vec3f& _Vec3f)
-{
-	return Vec3f(f * _Vec3f.x, f * _Vec3f.y, f * _Vec3f.z);
-}
 																					 
 class Mat4f {
 public:
