@@ -4,7 +4,13 @@
 #include "../Render/Mesh.h"
 
 class Terrain : public Component {
-public: 
-	/*void update (float delta_time) override;*/
+public:
+	float width;
+	float height;
+
+	void ready() override;
+	void update (float delta_time) override;
+
+	// add meshrenderer to gameobject parent
 };
 

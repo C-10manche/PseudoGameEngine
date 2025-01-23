@@ -9,6 +9,7 @@
 #include "../Render/Mesh.h"
 #include "../Components/Camera.h"
 #include "../Components/CameraController.h"
+#include "../Components/Terrain.h"
 
 #include <glfw3.h>  
 #include <string>
@@ -59,6 +60,15 @@ void TestScene::init() {
     camera = main_camera->add_component<Camera>();
     main_camera->add_component<CameraController>();
     this->add_game_object(main_camera);
+
+    GameObject* ground = new GameObject();
+    ground->transform->position = { 0.0f, -1.0f, 0.0f };
+    ground->name = "Ground";
+    Terrain* terrain = ground->add_component<Terrain>();
+    terrain->width = 4;
+    terrain->height = 4;
+    
+    this->add_game_object(ground);
 
 }
 
