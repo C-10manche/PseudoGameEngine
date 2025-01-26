@@ -1,14 +1,21 @@
 #include "../Input/Input.h"
 #include "../Utils/MyMath.h"
+#include "../Utils/Quaternion.h"	
 #include "../GameObject/GameObject.h"
 #include "Transform.h"
 #include "Component.h"
 #include "CameraController.h"
 
+CameraController::CameraController() : speed(0), sensitivity(1), pitch(0), yaw(0) {
+
+}
+
 void CameraController::ready()
 {
-    speed = 3.0f;
-    sensitivity = 5.0f;
+    this->speed = 3.0f;
+    this->sensitivity = 50.0f;
+    this->pitch = 0.0f;
+    this->yaw = 0.0f;
 }
 
 void CameraController::update(float delta_time)
@@ -19,26 +26,30 @@ void CameraController::update(float delta_time)
 void CameraController::handle_movement(float delta_time){
     float current_speed = speed * delta_time;
     Transform* transform = game_object->transform;
-    Vec3f forward = Vec3f(0, 0, 1);
-    Vec3f up = Vec3f(0, 1, 0);
+    Vec3f forward = transform->get_forward();
+    Vec3f right = transform->get_right();
     if(Input::is_pressed('W'))        
         transform->position += forward * current_speed;
     if(Input::is_pressed('S'))
         transform->position -= forward * current_speed;
     if(Input::is_pressed('D'))
     {
-        Vec3f right = (up.cross(forward));
-        right = right.normalized();
-        right *= current_speed;
-        transform->position += right;
+        transform->position += right * current_speed;
     }
     if(Input::is_pressed('A'))
     {
-        Vec3f left = (forward.cross(up));
-        left = left.normalized();
-        left *= current_speed;
-        transform->position += left;
+        transform->position -= right * current_speed;
     }
+
+
+    if (Input::is_pressed('E')) {
+        yaw += delta_time * sensitivity;
+    }
+    if (Input::is_pressed('Q')) {
+        yaw -= delta_time * sensitivity;
+    }
+
+    transform->rotation = Quaternion(Vec3f::UP(), yaw) * Quaternion(Vec3f::RIGHT(), pitch);
 }
 
 void CameraController::handle_orientation(float delta_time, Vec3f axis)

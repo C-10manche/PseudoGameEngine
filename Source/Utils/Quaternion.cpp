@@ -26,6 +26,17 @@ Vec3f Quaternion::rotate(Vec3f _v) {
 	return result.v;
 }
 
+Mat4f Quaternion::get_rotation_matrix() {
+	float x = this->v.x;
+	float y = this->v.y;
+	float z = this->v.z;
+	return Mat4f(
+		1.0f - 2 * y * y - 2 * z * z, 2 * x * y - 2 * w * z, 2 * x * z + 2 * w * y, 0,
+		2 * x * y + 2 * w * z, 1.0f - 2 * x * x - 2 * z * z, 2 * y * z + 2 * w * x, 0,
+		2 * x * z - 2 * w * y, 2 * y * z + 2 * w * x, 1 - 2 * x * x - 2 * y * y, 0,
+		0, 0, 0, 1);
+}
+
 Quaternion Quaternion::operator*(const Quaternion& _quat) const {
 
 	Vec3f cross = this->v.cross(_quat.v);

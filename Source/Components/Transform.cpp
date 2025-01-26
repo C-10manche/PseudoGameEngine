@@ -5,15 +5,15 @@
 Transform::Transform() : position(0.0f), rotation(), scale(1.0f) { }
 
 Vec3f Transform::get_right() {
-	return Vec3f();
+	return this->rotation.rotate(Vec3f::RIGHT());
 }
 
 Vec3f Transform::get_up() {
-	return Vec3f();
+	return this->rotation.rotate(Vec3f::UP());
 }
 
 Vec3f Transform::get_forward() {
-	return Vec3f();
+	return this->rotation.rotate(Vec3f::FORWARD());
 }
 
 Mat4f Transform::get_model_matrix() {
@@ -24,12 +24,7 @@ Mat4f Transform::get_model_matrix() {
 		0.0f, 0.0f, 0.0f, 1.0f
 	);
 
-	Mat4f rotation_matrix(
-		1.0f, 0.0f, 0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f, 0.0f,
-		0.0f, 0.0f, 1.0f, 0.0f,
-		0.0f, 0.0f, 0.0f, 1.0f
-	);
+	Mat4f rotation_matrix = this->rotation.get_rotation_matrix();
 
 	Mat4f translation_matrix(
 		1.0f, 0.0f, 0.0f, this->position.x,

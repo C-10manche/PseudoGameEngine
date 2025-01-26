@@ -16,7 +16,11 @@ public:
 
 	Projection projection_type;
 
+	GLFWwindow* window;
+
 	float fov;
+	float near;
+	float far;
 
 	Camera();
 
@@ -24,5 +28,6 @@ public:
 	Mat4f get_rotation_matrix();
 	Mat4f get_translation_matrix();
 	Mat4f get_view_matrix();
+	Mat4f get_perspective_matrix();
 };
 

@@ -9,6 +9,7 @@
 #include "../Render/Mesh.h"
 #include "../Components/Camera.h"
 #include "../Components/CameraController.h"
+#include "../Utils/Quaternion.h"
 
 #include <glfw3.h>  
 #include <string>
@@ -56,7 +57,8 @@ void TestScene::init() {
     GameObject* main_camera = new GameObject();
     main_camera->transform->position = { 0.0f, 0.0f, 0.0f };
     main_camera->name = "Main Camera";
-    camera = main_camera->add_component<Camera>();
+    this->camera = main_camera->add_component<Camera>();
+    this->camera->window = this->window;
     main_camera->add_component<CameraController>();
     this->add_game_object(main_camera);
 
@@ -71,65 +73,9 @@ void TestScene::update(float delta_time) {
     int windows_width, windows_height;
     glfwGetFramebufferSize(window, &windows_width, &windows_height);
 
-    //some old code
-    {
-        //Mat4f scale(
-        //    1.0f, 0.0f, 0.0f, 0.0f,
-        //    0.0f, 1.0f, 0.0f, 0.0f,
-        //    0.0f, 0.0f, 1.0f, 0.0f,
-        //    0.0f, 0.0f, 0.0f, 1.0f);
 
-        //float angle = (float)glfwGetTime() * 60;
-        //float angle_rad = angle * (float)PI / 180.0f;
-        //Mat4f rotation(
-        //    std::cos(angle_rad), 0.0f, -std::sin(angle_rad), 0.0f,
-        //    0.0f, 1.0f, 0.0f, 0.0f,
-        //    std::sin(angle_rad), 0.0f, std::cos(angle_rad), 0.0f,
-        //    0.0f, 0.0f, 0.0f, 1.0f);
-
-        //Mat4f translation(
-        //    1.0f, 0.0f, 0.0f, 0.0f,
-        //    0.0f, 1.0f, 0.0f, 0.0f,
-        //    0.0f, 0.0f, 1.0f, 3.0f,
-        //    0.0f, 0.0f, 0.0f, 1.0f);
-
-        //Mat4f model = translation * rotation * scale;
-    }
-
-    float deg_fov = 90.0f;
-    float rad_fov = ((deg_fov * 0.5f) * (float)PI) / 180.0f;
-    float tan_fov = std::tanf(rad_fov);
-    float d = 1.0f / tan_fov;
-
-    // aspect ratio
-    float ar = (float)windows_width / (float)windows_height;
-
-    float near_z = 0.01f;
-    float far_z = 10.0f;
-    float range_z = near_z - far_z;
-
-    float a_z = (-far_z - near_z) / range_z;
-    float b_z = 2.0f * far_z * near_z / range_z;
-
-    Mat4f perspective(
-        d / ar, 0.0f, 0.0f, 0.0f,
-        0.0f, d, 0.0f, 0.0f,
-        0.0f, 0.0f, a_z, b_z,
-        0.0f, 0.0f, 1.0f, 0.0f);
-
-    //float l = -1, r = 1;
-    //float t = -1, b = 1;
-
-    //Mat4f orthographic(
-    //    2.0f / (r - l), 0.0f, 0.0f, -(r + l) / (r - l),
-    //    0.0f, 2.0f / (t - b), 0.0f, -(t + b) / (t - b),
-    //    0.0f, 0.0f, 2.0f / (far_z - near_z), -(far_z + near_z) / (far_z - near_z),
-    //    0.0f, 0.0f, 0.0f, 1.0f
-    //);
-
-    //Mat4f mvp = perspective * model;
-
-
+    Mat4f view_matrix = camera->get_view_matrix();
+    Mat4f perspective_matrix = camera->get_perspective_matrix();
 
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -154,7 +100,8 @@ void TestScene::update(float delta_time) {
             shader->use();
 
             Transform* transform = go->transform;
-            Mat4f mvp = perspective * camera->get_view_matrix() * transform->get_model_matrix();
+            transform->rotation = Quaternion(Vec3f::UP(), (float)glfwGetTime() * 60);
+            Mat4f mvp = perspective_matrix * view_matrix * transform->get_model_matrix();
 
             shader->set_mat4("mvp", mvp.m);
             for (std::pair<const std::string, std::array<float, 3>>& prop : material->vec3_properties)

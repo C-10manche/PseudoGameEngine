@@ -16,6 +16,8 @@ public:
 
 	Vec3f rotate(Vec3f _v);
 
+	Mat4f get_rotation_matrix();
+
 	Quaternion operator*(const Quaternion& _quat) const;
 	Quaternion operator*(const Vec3f& _v) const;
 };
