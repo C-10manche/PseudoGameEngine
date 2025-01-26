@@ -10,6 +10,7 @@
 #include "../Components/Camera.h"
 #include "../Components/CameraController.h"
 #include "../Utils/Quaternion.h"
+#include "../Components/Terrain.h"
 
 #include <glfw3.h>  
 #include <string>

@@ -55,7 +55,7 @@ Mesh* Mesh::generate_plane_mesh(int x_size, int z_size)
     std::vector<Vertex> vertices;
     for (int z = 0; z <= z_size; z++) {
         for (int x = 0; x <= x_size; x++) {
-            Vertex new_vertex{ x, 0.0f, z };
+            Vertex new_vertex{ (float)x, 0.0f, (float)z };
             vertices.push_back(new_vertex);
         }
     }
