@@ -1,13 +1,12 @@
 #pragma once
 #include <iostream>
 #include <glfw3.h>  
+#include <array>
 
 class Input
 {
 public:
     static bool firstMouse;
-	static float mouse_x;
-	static float mouse_y;
 	static GLFWwindow* window;
 	static float lastX;
 	static float lastY;
@@ -20,12 +19,8 @@ public:
 	static bool is_released(int key_code);
 	static bool is_released(char key_value);
 
-	static bool is_mouse_in_motion();
-
+	static std::array<float, 2> get_mouse_delta();
 
 	static void set_window(GLFWwindow* window);
-
-	static void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
-
 };
 

@@ -9,7 +9,7 @@
 Camera::Camera(){
 
 	this->projection_type = Projection::orthographic;
-	this->fov = 90.0f;
+	this->fov = 60.0f;
     this->near = 0.01f;
     this->far = 100.0f;
     this->window = nullptr;

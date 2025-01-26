@@ -35,7 +35,6 @@ int main() {
     }
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    glfwSetCursorPosCallback(window, Input::mouse_callback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // control fps
@@ -60,19 +59,18 @@ int main() {
         float current_time = (float)glfwGetTime();
         if (current_time - last_frame_time >= frame_time) {
 
+            glfwPollEvents();
+
             delta_time = current_time - last_frame_time;
             last_frame_time = current_time;
 
             if (scene.is_running == false) {
                 scene.ready();
             }
+
             scene.update(delta_time);  
 
-            Input::mouse_x = 0;
-            Input::mouse_y = 0;
-
             glfwSwapBuffers(window);
-            glfwPollEvents();
         }
     }
 

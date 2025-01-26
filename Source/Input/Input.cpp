@@ -1,9 +1,7 @@
 #include "Input.h"
 #include <glfw3.h>  
 #include "../Utils/MyMath.h"
-
-float Input::mouse_x = 0.0f;
-float Input::mouse_y = 0.0f;
+#include <iomanip>
 
 GLFWwindow* Input::window = nullptr;
 bool Input::firstMouse = true;
@@ -20,25 +18,29 @@ void Input::set_window(GLFWwindow* window)
 	Input::window = window;
 }
 
-void Input::mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
-{
-	float xpos = static_cast<float>(xposIn);
-	float ypos = static_cast<float>(yposIn);
+std::array<float, 2> Input::get_mouse_delta() {
 
-	if (firstMouse)
-	{
-		Input::lastX = xpos;
-		Input::lastY = ypos;
-		Input::firstMouse = false;
+	double xpos, ypos;
+	glfwGetCursorPos(window, &xpos, &ypos);
+
+	float x = static_cast<float>(xpos);
+	float y = static_cast<float>(ypos);
+
+	if (firstMouse) {
+		lastX = x;
+		lastY = y;
+		firstMouse = false;
 	}
 
-	Input::mouse_x = xpos - Input::lastX;
-	Input::mouse_y = Input::lastY - ypos;
+	float delta_x = x - lastX;
+	float delta_y = y - lastY;
 
+	lastX = x;
+	lastY = y;
 
-	Input::lastX = xpos;
-	Input::lastY = ypos;
+	return { delta_x, delta_y };
 }
+
 
 bool Input::is_pressed(char key_value) {
 	char new_key = toupper(key_value);
@@ -61,13 +63,6 @@ bool Input::is_released(char key_value) {
 	if (glfwGetKey(window, key_code) == GLFW_RELEASE) {
 		return true;
 	}
-	return false;
-}
-
-bool Input::is_mouse_in_motion()
-{
-	if(Input::mouse_x != 0.0f || Input::mouse_y != 0.0f)
-		return true;
 	return false;
 }
 
