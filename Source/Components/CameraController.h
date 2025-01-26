@@ -19,7 +19,7 @@ public:
 	void update(float delta_time) override;
 
 	void handle_movement(float delta_time);
-	void handle_orientation(float delta_time, Vec3f axis);
+	void handle_orientation(float delta_time);
 
 };
 

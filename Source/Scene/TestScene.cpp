@@ -110,7 +110,7 @@ void TestScene::update(float delta_time) {
             shader->use();
 
             Transform* transform = go->transform;
-            transform->rotation = Quaternion(Vec3f::UP(), (float)glfwGetTime() * 60);
+            /*transform->rotation = Quaternion(Vec3f::UP(), (float)glfwGetTime() * 60);*/
             Mat4f mvp = perspective_matrix * view_matrix * transform->get_model_matrix();
 
             shader->set_mat4("mvp", mvp.m);

@@ -35,6 +35,8 @@ int main() {
     }
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetCursorPosCallback(window, Input::mouse_callback);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // control fps
     glfwSwapInterval(0);
@@ -44,6 +46,8 @@ int main() {
 
     bool is_scene_running = false;
 
+    int max_fps = 60;
+    float frame_time = 1.0f/max_fps;
 
     Input::set_window(window);
     TestScene scene(window);
@@ -53,16 +57,23 @@ int main() {
 
     while (!glfwWindowShouldClose(window)) {
 
-        delta_time = (float)glfwGetTime() - last_frame_time;
-        last_frame_time = (float)glfwGetTime();
+        float current_time = (float)glfwGetTime();
+        if (current_time - last_frame_time >= frame_time) {
 
-        if (scene.is_running == false) {
-            scene.ready();
+            delta_time = current_time - last_frame_time;
+            last_frame_time = current_time;
+
+            if (scene.is_running == false) {
+                scene.ready();
+            }
+            scene.update(delta_time);  
+
+            Input::mouse_x = 0;
+            Input::mouse_y = 0;
+
+            glfwSwapBuffers(window);
+            glfwPollEvents();
         }
-        scene.update(delta_time);    
-
-        glfwSwapBuffers(window);
-        glfwPollEvents();
     }
 
     glfwTerminate();
