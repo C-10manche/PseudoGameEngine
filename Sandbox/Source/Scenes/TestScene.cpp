@@ -88,7 +88,7 @@ void TestScene::update(float delta_time) {
     Mat4f view_matrix = camera->get_view_matrix();
     Mat4f perspective_matrix = camera->get_perspective_matrix();
 
-    glClearColor(0.45f, 0.84f, 1.0f, 1.0f);
+    glClearColor(0.2f, 0.32f, 0.48f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	for (GameObject* go : game_objects) {
 		if (MeshRenderer* mesh_renderer = go->get_component<MeshRenderer>()) {
