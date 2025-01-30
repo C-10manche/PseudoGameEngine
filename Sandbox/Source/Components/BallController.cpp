@@ -12,7 +12,7 @@ BallController::BallController() : rb(nullptr) {
 void BallController::ready() {
 	rb = this->game_object->add_component<Rigidbody>();
 	rb->collider = new SphereCollider();
-	rb->use_gravity =  false;
+	rb->use_gravity = false;
 }
 
 void BallController::update(float delta_time) {

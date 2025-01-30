@@ -8,8 +8,8 @@ public:
 
 	Terrain();
 
-	int width;
-	int height;
+	float size;
+	int resolution;
 
 	void ready() override;
 	void update (float delta_time) override;

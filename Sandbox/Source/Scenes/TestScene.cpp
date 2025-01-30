@@ -40,8 +40,8 @@ void TestScene::init() {
     GameObject* ground = new GameObject();
     ground->transform->position = { 0.0f, 0.0f, 0.0f };
     Terrain* terrain = ground->add_component<Terrain>();
-    terrain->width = 20;
-    terrain->height = 20;
+    terrain->size = 100;
+    terrain->resolution = 100;
     this->add_game_object(ground);
 
     GameObject* camera = this->main_camera->game_object;

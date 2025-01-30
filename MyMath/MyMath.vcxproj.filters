@@ -41,5 +41,8 @@
     <ClInclude Include="Source\Vec3f.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Noise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

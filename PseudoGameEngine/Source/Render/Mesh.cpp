@@ -1,5 +1,6 @@
 #include "Mesh.h"
 #include "MathHelper.h"
+#include "Noise.h"
 #include <cmath>
 #include <iostream>
 
@@ -52,15 +53,17 @@ Mesh* Mesh::generate_cube_mesh() {
 	return new Mesh(vertices, indices);
 }
 
-Mesh* Mesh::generate_plane_mesh(int x_size, int z_size)
+Mesh* Mesh::generate_plane_mesh(float size, int resolution)
 {
-    float half_size_x = (float)x_size / 2;
-    float half_size_z = (float)z_size / 2;
+    float half_res = (float)resolution / 2;
 
     std::vector<Vertex> vertices;
-    for (int z = 0; z <= z_size; z++) {
-        for (int x = 0; x <= x_size; x++) {
-            Vertex new_vertex{ (float)x - half_size_x, 0.0f, (float)z - half_size_z};
+    for (int z = 0; z <= resolution; z++) {
+        for (int x = 0; x <= resolution; x++) {
+            float x_pos = (x - half_res) * size / resolution;
+            float z_pos = (z - half_res) * size / resolution;
+            float y_pos = simplexNoise(x_pos * 0.1f, z_pos * 0.1f);
+            Vertex new_vertex{ x_pos, y_pos, z_pos };
             vertices.push_back(new_vertex);
         }
     }
@@ -68,15 +71,15 @@ Mesh* Mesh::generate_plane_mesh(int x_size, int z_size)
     int vert = 0;
 
     std::vector<unsigned int> indices;
-    for (int z = 0; z < z_size; z++) {
-        for (int x = 0; x < x_size; x++) {
+    for (int z = 0; z < resolution; z++) {
+        for (int x = 0; x < resolution; x++) {
 
             indices.push_back(vert);
-            indices.push_back(vert + x_size + 1);
-            indices.push_back(vert + x_size + 2);
+            indices.push_back(vert + resolution + 1);
+            indices.push_back(vert + resolution + 2);
 
             indices.push_back(vert);
-            indices.push_back(vert + x_size + 2);
+            indices.push_back(vert + resolution + 2);
             indices.push_back(vert + 1);
 
             vert++;
