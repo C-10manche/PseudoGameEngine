@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyMath", "MyMath\MyMath.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox", "Sandbox\Sandbox.vcxproj", "{6F55FEF1-BDC7-4568-B21E-41F8912C8125}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyPhysics", "MyPhysics\MyPhysics.vcxproj", "{67ADB77D-C5E3-4C09-8A61-CCD75CF400F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{6F55FEF1-BDC7-4568-B21E-41F8912C8125}.Release|x64.Build.0 = Release|x64
 		{6F55FEF1-BDC7-4568-B21E-41F8912C8125}.Release|x86.ActiveCfg = Release|Win32
 		{6F55FEF1-BDC7-4568-B21E-41F8912C8125}.Release|x86.Build.0 = Release|Win32
+		{67ADB77D-C5E3-4C09-8A61-CCD75CF400F2}.Debug|x64.ActiveCfg = Debug|x64
+		{67ADB77D-C5E3-4C09-8A61-CCD75CF400F2}.Debug|x64.Build.0 = Debug|x64
+		{67ADB77D-C5E3-4C09-8A61-CCD75CF400F2}.Debug|x86.ActiveCfg = Debug|Win32
+		{67ADB77D-C5E3-4C09-8A61-CCD75CF400F2}.Debug|x86.Build.0 = Debug|Win32
+		{67ADB77D-C5E3-4C09-8A61-CCD75CF400F2}.Release|x64.ActiveCfg = Release|x64
+		{67ADB77D-C5E3-4C09-8A61-CCD75CF400F2}.Release|x64.Build.0 = Release|x64
+		{67ADB77D-C5E3-4C09-8A61-CCD75CF400F2}.Release|x86.ActiveCfg = Release|Win32
+		{67ADB77D-C5E3-4C09-8A61-CCD75CF400F2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

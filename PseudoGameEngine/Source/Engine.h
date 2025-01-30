@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Scene/Scene.h"
-#include <glfw3.h>
+
+struct GLFWwindow;
 
 class Engine {
 public:

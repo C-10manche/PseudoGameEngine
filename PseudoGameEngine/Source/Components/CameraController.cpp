@@ -8,6 +8,8 @@
 #include "CameraController.h"
 #include <array>
 
+#include <glfw3.h>
+
 CameraController::CameraController() : speed(0.0f), sensitivity(1.0f), pitch(0.0f), yaw(0.0f) {
 
 }
@@ -37,17 +39,18 @@ void CameraController::handle_movement(float delta_time){
 
     Vec3f move_direction;
 
-    if (Input::is_pressed(GLFW_KEY_ESCAPE))
+    if (Input::is_pressed(GLFW_KEY_ESCAPE)) {
         glfwSetWindowShouldClose(Input::window, true);
+    }
 
-    if(Input::is_pressed('W'))        
-        move_direction += forward;
-    if(Input::is_pressed('S'))
-        move_direction -= forward;
-    if(Input::is_pressed('D'))
-        move_direction += right;
-    if(Input::is_pressed('A'))
-        move_direction -= right;
+    //if(Input::is_pressed('W'))        
+    //    move_direction += forward;
+    //if(Input::is_pressed('S'))
+    //    move_direction -= forward;
+    //if(Input::is_pressed('D'))
+    //    move_direction += right;
+    //if(Input::is_pressed('A'))
+    //    move_direction -= right;
 
     move_direction = move_direction.normalized();
 

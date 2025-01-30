@@ -1,8 +1,10 @@
-#include "Engine.h"
 #include <glad/glad.h>
 #include <glfw3.h>
+
+#include "Engine.h"
 #include "Scene/Scene.h"
 #include "Input/Input.h"
+
 
 Engine::Engine() : scene(nullptr), window(nullptr), frame_time(1.0f/60), last_frame_time(0), delta_time(0) {
 

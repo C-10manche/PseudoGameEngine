@@ -84,7 +84,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)PseudoGameEngine\Dependencies\GLAD\include;$(SolutionDir)PseudoGameEngine\Dependencies\GLFW\include;$(SolutionDir)MyMath\Source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)PseudoGameEngine\Dependencies\GLAD\include;$(SolutionDir)PseudoGameEngine\Dependencies\GLFW\include;$(SolutionDir)MyMath\Source;$(SolutionDir)MyPhysics\Source</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -101,7 +101,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)PseudoGameEngine\Dependencies\GLAD\include;$(SolutionDir)PseudoGameEngine\Dependencies\GLFW\include;$(SolutionDir)MyMath\Source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)PseudoGameEngine\Dependencies\GLAD\include;$(SolutionDir)PseudoGameEngine\Dependencies\GLFW\include;$(SolutionDir)MyMath\Source;$(SolutionDir)MyPhysics\Source</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)PseudoGameEngine\Dependencies\GLAD\include;$(SolutionDir)PseudoGameEngine\Dependencies\GLFW\include;$(SolutionDir)MyMath\Source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)PseudoGameEngine\Dependencies\GLAD\include;$(SolutionDir)PseudoGameEngine\Dependencies\GLFW\include;$(SolutionDir)MyMath\Source;$(SolutionDir)MyPhysics\Source</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -136,7 +136,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)PseudoGameEngine\Dependencies\GLAD\include;$(SolutionDir)PseudoGameEngine\Dependencies\GLFW\include;$(SolutionDir)MyMath\Source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)PseudoGameEngine\Dependencies\GLAD\include;$(SolutionDir)PseudoGameEngine\Dependencies\GLFW\include;$(SolutionDir)MyMath\Source;$(SolutionDir)MyPhysics\Source</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -149,9 +149,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Physics\MeshCollider.cpp" />
+    <ClCompile Include="Source\Components\Rigidbody.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Components\CameraController.cpp" />
     <ClCompile Include="Source\Input\Input.cpp" />
+    <ClCompile Include="Source\Physics\Collider.cpp" />
+    <ClCompile Include="Source\Physics\PhysicsHandler.cpp" />
     <ClCompile Include="Source\Render\Mesh.cpp" />
     <ClCompile Include="Source\Render\Material.cpp" />
     <ClCompile Include="Source\Components\MeshRenderer.cpp" />
@@ -163,8 +167,11 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="Source\Scene\Scene.cpp" />
     <ClCompile Include="Source\Components\Terrain.cpp" />
+    <ClCompile Include="Source\Physics\SphereCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Physics\MeshCollider.h" />
+    <ClInclude Include="Source\Components\Rigidbody.h" />
     <ClInclude Include="Source\Components\CameraController.h" />
     <ClInclude Include="Dependencies\GLAD\include\glad\glad.h" />
     <ClInclude Include="Dependencies\GLAD\include\KHR\khrplatform.h" />
@@ -172,6 +179,8 @@
     <ClInclude Include="Dependencies\GLFW\include\glfw3native.h" />
     <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="Source\Input\Input.h" />
+    <ClInclude Include="Source\Physics\Collider.h" />
+    <ClInclude Include="Source\Physics\PhysicsHandler.h" />
     <ClInclude Include="Source\Render\Mesh.h" />
     <ClInclude Include="Source\Render\Material.h" />
     <ClInclude Include="Source\Components\MeshRenderer.h" />
@@ -182,6 +191,7 @@
     <ClInclude Include="Source\Components\Transform.h" />
     <ClInclude Include="Source\Render\Shader.h" />
     <ClInclude Include="Source\Components\Terrain.h" />
+    <ClInclude Include="Source\Physics\SphereCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\GLFW\lib\glfw3.pdb" />
@@ -192,6 +202,9 @@
   <ItemGroup>
     <ProjectReference Include="..\MyMath\MyMath.vcxproj">
       <Project>{4dac647c-ce8e-4481-a94a-cc6e1c5d780a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\MyPhysics\MyPhysics.vcxproj">
+      <Project>{67adb77d-c5e3-4c09-8a61-ccd75cf400f2}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

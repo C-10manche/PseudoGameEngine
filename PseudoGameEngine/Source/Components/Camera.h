@@ -4,8 +4,6 @@
 #include "Transform.h"
 #include "Component.h"
 
-#include <glfw3.h>  
-
 class Camera : public Component{
 public:
 
@@ -15,8 +13,6 @@ public:
 	};
 
 	Projection projection_type;
-
-	GLFWwindow* window;
 
 	float fov;
 	float near;
@@ -28,6 +24,6 @@ public:
 	Mat4f get_rotation_matrix();
 	Mat4f get_translation_matrix();
 	Mat4f get_view_matrix();
-	Mat4f get_perspective_matrix();
+	Mat4f get_perspective_matrix(float aspect_ratio);
 };
 

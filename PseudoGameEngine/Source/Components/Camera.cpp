@@ -4,9 +4,7 @@
 #include "Mat4f.h"
 #include "../Input/Input.h"
 #include "../GameObject/GameObject.h"
-#include "../Components/Transform.h"
-
-#include <glfw3.h>  
+#include "../Components/Transform.h" 
 
 Camera::Camera(){
 
@@ -14,7 +12,6 @@ Camera::Camera(){
 	this->fov = 60.0f;
     this->near = 0.01f;
     this->far = 100.0f;
-    this->window = nullptr;
 }
 
 Mat4f Camera::get_rotation_matrix()
@@ -60,26 +57,21 @@ Mat4f Camera::get_view_matrix() {
     return view_matrix;
 }
 
-Mat4f Camera::get_perspective_matrix() {
+Mat4f Camera::get_perspective_matrix(float aspect_ratio) {
 
     float rad_fov = ((this->fov * 0.5f) * (float)PI) / 180.0f;
     float tan_fov = std::tanf(rad_fov);
     float d = 1.0f / tan_fov;
 
-    // aspect ration
-    int windows_width, windows_height;
-    glfwGetFramebufferSize(window, &windows_width, &windows_height);
-    float ar = (float)windows_width / (float)windows_height;
 
-    float near_z = 0.01f;
-    float far_z = 100.0f;
-    float range_z = near_z - far_z;
 
-    float a_z = (-far_z - near_z) / range_z;
-    float b_z = 2.0f * far_z * near_z / range_z;
+    float range_z = this->near - this->far;
+
+    float a_z = (-this->far - this->near) / range_z;
+    float b_z = 2.0f * this->far * this->near / range_z;
 
     return Mat4f(
-        d / ar, 0.0f, 0.0f, 0.0f,
+        d / aspect_ratio, 0.0f, 0.0f, 0.0f,
         0.0f, d, 0.0f, 0.0f,
         0.0f, 0.0f, a_z, b_z,
         0.0f, 0.0f, 1.0f, 0.0f);

@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
-#include <glfw3.h>  
 #include <array>
+
+struct GLFWwindow;
 
 class Input
 {
