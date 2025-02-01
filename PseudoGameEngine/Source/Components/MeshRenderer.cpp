@@ -43,13 +43,33 @@ void MeshRenderer::set_up() {
 }
 
 void MeshRenderer::draw() {
+
 	if (this->mesh == nullptr) {
 		std::cout << "ERROR::MESHRENDERER\n" << "CANNOT DRAW WITHOUT A MESH ASSIGNED";
 		return;
 	}
 
 	glBindVertexArray(VAO);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
 	glDrawElements(GL_TRIANGLES, (GLsizei)this->mesh->indices.size(), GL_UNSIGNED_INT, 0);
+
+	glBindVertexArray(0);
+}
+
+void MeshRenderer::draw_wireframe() {
+
+	if (this->mesh == nullptr) {
+		std::cout << "ERROR::MESHRENDERER\n" << "CANNOT DRAW WITHOUT A MESH ASSIGNED";
+		return;
+	}
+
+	glBindVertexArray(VAO);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glLineWidth(2.0f);
+	glDrawElements(GL_TRIANGLES, (GLsizei)this->mesh->indices.size(), GL_UNSIGNED_INT, 0);
+
 	glBindVertexArray(0);
 }

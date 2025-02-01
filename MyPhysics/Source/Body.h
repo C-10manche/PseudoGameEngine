@@ -1,14 +1,18 @@
 #pragma once
 
 #include "Vec3f.h"
+#include "Quaternion.h"
 #include "Shape.h"
 
 class Body
 {
 public:
 	Vec3f position;
+	Quaternion rotation;
 	Vec3f velocity;
 	Vec3f acceleration;
+	float mass;
+	float restitution;
 	bool use_gravity;
 	bool is_static;
 

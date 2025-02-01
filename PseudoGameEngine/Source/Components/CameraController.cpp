@@ -39,18 +39,14 @@ void CameraController::handle_movement(float delta_time){
 
     Vec3f move_direction;
 
-    if (Input::is_pressed(GLFW_KEY_ESCAPE)) {
-        glfwSetWindowShouldClose(Input::window, true);
-    }
-
-    //if(Input::is_pressed('W'))        
-    //    move_direction += forward;
-    //if(Input::is_pressed('S'))
-    //    move_direction -= forward;
-    //if(Input::is_pressed('D'))
-    //    move_direction += right;
-    //if(Input::is_pressed('A'))
-    //    move_direction -= right;
+    if(Input::is_pressed('U'))        
+        move_direction += forward;
+    if(Input::is_pressed('J'))
+        move_direction -= forward;
+    if(Input::is_pressed('K'))
+        move_direction += right;
+    if(Input::is_pressed('H'))
+        move_direction -= right;
 
     move_direction = move_direction.normalized();
 
@@ -66,5 +62,5 @@ void CameraController::handle_orientation(float delta_time)
     yaw += mouse_delta[0] * sensitivity;
     pitch += mouse_delta[1] * sensitivity;
 
-    transform->rotation = Quaternion(Vec3f::UP(), yaw) * Quaternion(Vec3f::RIGHT(), pitch);
+    transform->rotation = Quaternion(Vec3f::UP, yaw) * Quaternion(Vec3f::RIGHT, pitch);
 }

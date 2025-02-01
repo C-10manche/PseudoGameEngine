@@ -100,14 +100,20 @@ void Scene::update(float delta_time) {
 			Transform* transform = go->transform;
 			/*transform->rotation = Quaternion(Vec3f::UP(), (float)glfwGetTime() * 60);*/
 			Mat4f mvp = perspective_matrix * view_matrix * transform->get_model_matrix();
-
 			shader->set_mat4("mvp", mvp.m);
+
+			// for wireframe, temporary because not good
+			std::array<float, 3 > wireframe_color{ 0.0f, 1.0f, 0.0f };
+			shader->set_vec3("color", &wireframe_color[0]);
+			mesh_renderer->draw_wireframe();
+
 			for (std::pair<const std::string, std::array<float, 3>>&prop : material->vec3_properties)
 			{
 				shader->set_vec3(prop.first, &prop.second[0]);
 			}
 
 			mesh_renderer->draw();
+
 		}
 	}
 }

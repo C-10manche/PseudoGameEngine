@@ -3,7 +3,9 @@
 
 Body::Body() :	position(0), 
 				velocity(0), 
-				acceleration(0), 
+				acceleration(0),
+				mass(1),
+				restitution(1),
 				use_gravity(true),
 				is_static(false),
 				shape(nullptr)
@@ -28,5 +30,5 @@ void Body::step(float delta_time) {
 	velocity += acceleration * delta_time;
 	position += velocity * delta_time;
 
-	acceleration = Vec3f::ZERO();
+	acceleration = Vec3f::ZERO;
 }

@@ -18,6 +18,8 @@ public:
 
 	void draw();
 
+	void draw_wireframe();
+
 	void set_up();
 };
 

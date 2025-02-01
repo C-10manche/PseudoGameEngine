@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Shape.h"
+#include "Vec3f.h"
+#include "Quaternion.h"
 
 #include <array>
 #include <vector>
@@ -13,5 +15,7 @@ public:
 	std::vector<unsigned int> indices;
 
 	MeshShape();
+
+	std::vector<std::array<float, 3>> get_transformed_vertices(Vec3f position, Quaternion rotation);
 };
 

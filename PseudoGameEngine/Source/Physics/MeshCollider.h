@@ -8,9 +8,6 @@ class MeshCollider : public Collider
 {
 public:
 
-	std::vector<std::array<float, 3>> vertices;
-	std::vector<unsigned int> indices;
-
 	MeshCollider();
 };
 

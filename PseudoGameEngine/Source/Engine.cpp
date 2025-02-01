@@ -43,6 +43,8 @@ bool Engine::init() {
     // control fps
     glfwSwapInterval(0);
 
+    glfwSetWindowPos(window, 500, 100);
+
 
     Input::set_window(window);
 
@@ -64,6 +66,11 @@ void Engine::run() {
 
         float current_time = (float)glfwGetTime();
         if (current_time - last_frame_time >= frame_time) {
+
+
+            if (Input::is_pressed(GLFW_KEY_ESCAPE)) {
+                glfwSetWindowShouldClose(Input::window, true);
+            }
 
             glfwPollEvents();
 

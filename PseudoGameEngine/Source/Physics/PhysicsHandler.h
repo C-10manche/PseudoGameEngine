@@ -5,6 +5,8 @@
 class PhysicsWorld;
 class Body;
 class Rigidbody;
+class Mesh;
+class MeshShape;
 
 class PhysicsHandler {
 public:
@@ -28,6 +30,8 @@ public:
 	void sync_transform_to_rigidbody();
 
 	void sync_rigidbody_to_transform();
+
+	static MeshShape* mesh_to_mesh_shape(Mesh* mesh);
 
 private:
 };

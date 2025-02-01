@@ -37,7 +37,7 @@ void PhysicsWorld::step(float delta_time) {
 	// apply gravity
 	for (Body* b : bodies) {
 		if (b->use_gravity) {
-			b->add_force(Vec3f::DOWN() * gravity_force);
+			b->add_force(Vec3f::DOWN * gravity_force);
 		}
 	}
 
@@ -50,33 +50,9 @@ void PhysicsWorld::step(float delta_time) {
 	for (int i = 0; i < bodies.size() - 1; i++) {
 		Body* body_a = bodies[i];
 		for(int j = i + 1; j < bodies.size(); j++) {
-
 			Body* body_b = bodies[j];
 
-			if (body_a->is_static && body_b->is_static) {
-
-				continue;
-			}
-
-			Vec3f normal;
-			float depth;
-			if (Collision::intersect(body_a, body_b, normal, depth)) {
-
-				if (body_a->is_static) {
-
-					body_b->position += normal * depth;
-				}
-				else if (body_b->is_static) {
-
-					body_a->position -= normal * depth;
-				}
-				else {
-
-					body_a->position -= normal * depth / 2;
-					body_b->position += normal * depth / 2;
-				}
-
-			}
+			Collision::resolve_collision(body_a, body_b);
 		}
 	}
 	 

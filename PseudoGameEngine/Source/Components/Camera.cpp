@@ -52,7 +52,6 @@ Mat4f Camera::get_view_matrix() {
 
     const Mat4f& rotation_matrix = get_rotation_matrix();
     const Mat4f& translation_matrix = get_translation_matrix();
-    //const Mat4f& view_matrix = translation_matrix * rotation_matrix;
     const Mat4f& view_matrix = rotation_matrix * translation_matrix;
     return view_matrix;
 }

@@ -60,8 +60,8 @@ Mesh* Mesh::generate_plane_mesh(float size, int resolution)
     std::vector<Vertex> vertices;
     for (int z = 0; z <= resolution; z++) {
         for (int x = 0; x <= resolution; x++) {
-            float x_pos = (x - half_res) * size / resolution;
-            float z_pos = (z - half_res) * size / resolution;
+            float x_pos = (x - half_res)* size / resolution;
+            float z_pos = (z - half_res)* size / resolution;
             float y_pos = simplexNoise(x_pos * 0.1f, z_pos * 0.1f);
             Vertex new_vertex{ x_pos, y_pos, z_pos };
             vertices.push_back(new_vertex);
@@ -69,7 +69,6 @@ Mesh* Mesh::generate_plane_mesh(float size, int resolution)
     }
 
     int vert = 0;
-
     std::vector<unsigned int> indices;
     for (int z = 0; z < resolution; z++) {
         for (int x = 0; x < resolution; x++) {
@@ -113,12 +112,12 @@ Mesh* Mesh::generate_uv_sphere_mesh(int segments, int rings) {
             int vertex_index = j + (segments + 1) * i;
 
             indices.push_back(vertex_index);
-            indices.push_back(vertex_index + segments + 1);
             indices.push_back(vertex_index + 1);
+            indices.push_back(vertex_index + segments + 1);
 
             indices.push_back(vertex_index + segments + 1);
-            indices.push_back(vertex_index + segments + 2);
             indices.push_back(vertex_index + 1);
+            indices.push_back(vertex_index + segments + 2);
         }
     }
 
@@ -167,12 +166,12 @@ Mesh* Mesh::generate_capsule_mesh(int segments, int rings_per_hemisphere) {
             int vertex_index = j + (segments + 1) * i;
 
             indices.push_back(vertex_index);
-            indices.push_back(vertex_index + segments + 1);
             indices.push_back(vertex_index + 1);
+            indices.push_back(vertex_index + segments + 1);
 
             indices.push_back(vertex_index + segments + 1);
-            indices.push_back(vertex_index + segments + 2);
             indices.push_back(vertex_index + 1);
+            indices.push_back(vertex_index + segments + 2);
         }
     }
 

@@ -30,7 +30,7 @@ public:
 
 	Vec3f operator/(float f) const;
 	Vec3f operator*(float f) const;
-
+	friend Vec3f operator*(float f, Vec3f vector);
 	Vec3f operator+(const Vec3f& _Vec3f) const;
 	Vec3f operator-(const Vec3f& _Vec3f) const;
 	Vec3f& operator=(const Vec3f& _Vec3f);
@@ -40,11 +40,11 @@ public:
 
 	std::string print() const;
 
-	static Vec3f RIGHT();
-	static Vec3f LEFT();
-	static Vec3f UP();
-	static Vec3f DOWN();
-	static Vec3f FORWARD();
-	static Vec3f BACKWARD();
-	static Vec3f ZERO();
+	static const Vec3f RIGHT;
+	static const Vec3f LEFT;
+	static const Vec3f UP;
+	static const Vec3f DOWN;
+	static const Vec3f FORWARD;
+	static const Vec3f BACKWARD;
+	static const Vec3f ZERO;
 };
