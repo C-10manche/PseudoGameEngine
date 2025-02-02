@@ -133,7 +133,7 @@
     <ClCompile Include="Source\Vec3f.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Noise.h" />
+    <ClInclude Include="Source\FastNoiseLite.h" />
     <ClInclude Include="Source\Mat4f.h" />
     <ClInclude Include="Source\MathHelper.h" />
     <ClInclude Include="Source\Quaternion.h" />

@@ -1,8 +1,9 @@
 #include "Mesh.h"
 #include "MathHelper.h"
-#include "Noise.h"
+#include "FastNoiseLite.h"
 #include <cmath>
 #include <iostream>
+#include <random>
 
 Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices) { 
 
@@ -57,12 +58,26 @@ Mesh* Mesh::generate_plane_mesh(float size, int resolution)
 {
     float half_res = (float)resolution / 2;
 
+    //setup le noise
+    FastNoiseLite noise;
+    noise.SetNoiseType(FastNoiseLite::NoiseType_OpenSimplex2);
+
+    //setup random avec Mersenne Twister pour le seed
+    std::mt19937 mt;
+    noise.SetSeed(mt());
+
+    noise.SetFrequency(0.01f);
+    noise.SetFractalType(FastNoiseLite::FractalType_FBm);
+    noise.SetFractalOctaves(5);
+    noise.SetFractalLacunarity(2.0f);
+    noise.SetFractalGain(1.0f);
+
     std::vector<Vertex> vertices;
     for (int z = 0; z <= resolution; z++) {
         for (int x = 0; x <= resolution; x++) {
             float x_pos = (x - half_res)* size / resolution;
             float z_pos = (z - half_res)* size / resolution;
-            float y_pos = simplexNoise(x_pos * 0.1f, z_pos * 0.1f);
+            float y_pos = noise.GetNoise(x_pos, z_pos);
             Vertex new_vertex{ x_pos, y_pos, z_pos };
             vertices.push_back(new_vertex);
         }

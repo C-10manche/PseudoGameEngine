@@ -30,7 +30,7 @@ void TestScene::init() {
     ground->transform->position = { 0.0f, 0.0f, 0.0f };
     Terrain* terrain = ground->add_component<Terrain>();
     terrain->size = 40;
-    terrain->resolution = 30;
+    terrain->resolution = 100;
     Quaternion ground_rotation(Vec3f::FORWARD, 0);
     ground->transform->rotation = ground_rotation;
     this->add_game_object(ground);
