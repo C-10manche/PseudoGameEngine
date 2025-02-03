@@ -70,14 +70,17 @@ Mesh* Mesh::generate_plane_mesh(float size, int resolution)
     noise.SetFractalType(FastNoiseLite::FractalType_FBm);
     noise.SetFractalOctaves(5);
     noise.SetFractalLacunarity(2.0f);
-    noise.SetFractalGain(1.0f);
+    noise.SetFractalGain(0.5f);
+
 
     std::vector<Vertex> vertices;
+    float x_pos, y_pos, z_pos;
+    int v = 0;
     for (int z = 0; z <= resolution; z++) {
         for (int x = 0; x <= resolution; x++) {
-            float x_pos = (x - half_res)* size / resolution;
-            float z_pos = (z - half_res)* size / resolution;
-            float y_pos = noise.GetNoise(x_pos, z_pos);
+            x_pos = (x - half_res)* size / resolution;
+            z_pos = (z - half_res) * size / resolution;
+            y_pos = noise.GetNoise((float)x, (float)z);
             Vertex new_vertex{ x_pos, y_pos, z_pos };
             vertices.push_back(new_vertex);
         }
